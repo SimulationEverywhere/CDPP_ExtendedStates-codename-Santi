@@ -1,0 +1,68 @@
+export CPP = g++
+export CC  = gcc
+
+ALL_DIRS            = $(shell find $(KERNEL_SRC) -mindepth 1 -type d)
+#ALL_DIRS           = $(foreach DIR, $(ALL_COMPONENTS), $(FIND_SUBDIRS))
+INCLUDE_ALL_DIRS    = $(addprefix -I, $(ALL_DIRS))
+
+export INCLUDES_CPP = $(INCLUDE_ALL_DIRS) 
+export LDFLAGS      = -L$(OUT_DIR)
+export DEFINES_CPP  = $(MODEL_FLAGS)
+
+export DEBUGFLAGS   = -g -O0
+export CPPFLAGS     = -Wall -Wno-deprecated -std=c++11
+
+#DEFINES_C=
+#INCLUDES_C=
+#CFLAGS=
+#DEBUGFLAGS=
+#LDFLAGS+=-L. -L$(GCC_HOME)/usr/lib -L$(GCC_HOME)/lib
+
+
+#===========================================================================
+#PCD++ Directory Details
+#MAINDIR=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
+#INCLUDES_CPP +=-I$(MAINDIR)/include -I$(MAINDIR)
+#LDFLAGS += -L$(MAINDIR)/
+
+#If running parallel simulation, uncomment the following lines
+#DEFINES_CPP += -DMPI 
+#LIBMPI = -lmpich
+#===========================================================================
+
+#===========================================================================
+#MPI Directory Details
+#MPIDIR=/home/atroccol/mpich-1.2.0
+#LDFLAGS +=-L$(MPIDIR)/lib/
+#INCLUDES_CPP += -I$(MPIDIR)/include
+#===========================================================================
+
+#===========================================================================
+#WARPED CONFIGURATION
+#===========================================================================
+#Warped Directory Details
+#For the TimeWarp kernel uncomment the following
+#DEFINES_CPP += -DKERNEL_TIMEWARP
+#PLIBS += -lTW  $(LIBMPI) 
+#TWLIB = libTW.a
+
+#For the NoTimeKernel, uncomment the following
+DEFINES_CPP += -DKERNEL_NOTIME
+PLIBS += -lNoTime  $(LIBMPI)
+TWLIB = libNoTime.a
+
+#Common defines
+DEFINES_CPP   += -DUSE_USER_VTIME -DHAS_BOOLEAN
+#INCLUDES_CPP += -I$(TWDIR) -I$(TWDIR)/../../common/include
+#LDFLAGS += -L$(TWOBJ)/
+#===========================================================================
+
+
+
+#############################################################################################################
+#TESTING
+#DEFINES_CPP += -DDEVS_DELAY_INTERNAL
+#DEFINES_CPP += -DDEVS_DELAY_EXTERNAL
+DEFINES_CPP += -DDEVS_NOTRANDOM
+#DEFINES_CPP += -DDEVS_LOGSENT
+#############################################################################################################

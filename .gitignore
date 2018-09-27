@@ -1,0 +1,7 @@
+src/bin/cd++
+*.o
+*.a
+*.so
+*.dep
+*.dep.*
+*.log*

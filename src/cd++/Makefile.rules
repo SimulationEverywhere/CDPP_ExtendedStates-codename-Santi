@@ -1,0 +1,25 @@
+# Standard rules
+
+${OBJ_DIR}/%.o : %.cpp 
+	@mkdir -p ${OBJ_DIR}
+	${CPP} -c ${INCLUDES_CPP} ${DEFINES_CPP} ${DEBUGFLAGS} ${CPPFLAGS} ${OPTCPPFLAGS} $< -o $@
+	
+${OBJ_DIR}/%.o : %.c
+	@mkdir -p ${OBJ_DIR}
+	${CC} -c ${INCLUDES_CPP} ${INCLUDES_C} ${DEFINES_C} ${DEBUGFLAGS} ${CFLAGS} ${OPTCPPFLAGS} $< -o $@
+	
+${OBJ_DIR}/%.o : ${MODEL_SRC}/%.cpp 
+	@mkdir -p ${OBJ_DIR}
+	${CPP} -c ${INCLUDES_CPP} ${DEFINES_CPP} ${DEBUGFLAGS} ${CPPFLAGS} ${OPTCPPFLAGS} $< -o $@	
+	
+%.dep : %.cpp
+	@set -e; rm -f $@; \
+	$(CPP) -MM ${INCLUDES_CPP} -MT '$${OBJ_DIR}/$(basename $@).o' ${DEFINES_CPP} ${DEBUGFLAGS} ${CPPFLAGS} ${OPTCPPFLAGS} $< > $@.$$$$; \
+	sed 's,\($*\)\.o[ :]*,\1.o $@ : ,g' < $@.$$$$ > $@; \
+	rm -f $@.$$$$
+	
+%.dep : %.c
+	@set -e; rm -f $@; \
+	$(CC) -MM ${INCLUDES_CPP} -MT '$${OBJ_DIR}/$(basename $@).o' ${INCLUDES_C} ${DEFINES_C} ${DEBUGFLAGS} ${CFLAGS} ${OPTCPPFLAGS} $< > $@.$$$$; \
+	sed 's,\($*\)\.o[ :]*,\1.o $@ : ,g' < $@.$$$$ > $@; \
+	rm -f $@.$$$$
