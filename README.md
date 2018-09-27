@@ -9,7 +9,7 @@ An extended and improved version of CD++ for Cell-DEVS.
 The easiest way to get the source code is by cloning the git repository:
 
 ```
- $ git clone https://github.com/SimulationEverywhere/CDPP_ExtendedStates-codename-Santi-.git 
+ $ git clone https://github.com/SimulationEverywhere/CDPP_ExtendedStates-codename-Santi.git 
 ```
 
 ### Prerequisites
