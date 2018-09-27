@@ -51,9 +51,9 @@ Makefile defining, at least,
 
  * The `KERNEL_SRC` variable pointing to the directory where the cd++ source
    code is located.
- * The `MODEL_FLAGS` variable the value `-DREGISTER_ATOMICS`. This is to compile
-   the code responsible for registering the desired atomic model into the
-   simulator kernel.
+ * The `MODEL_FLAGS` variable with value `-DREGISTER_ATOMICS`. This is to
+   compile the code responsible for registering the desired atomic model into
+   the simulator kernel.
  * The inclusion of definitions and compilation rules provided by the
    simulator:
 ```
