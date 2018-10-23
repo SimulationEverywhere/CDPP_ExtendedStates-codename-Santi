@@ -1,6 +1,7 @@
 /*******************************************************************
 *
-*  DESCRIPTION: class VTime/ (originally named Time in v1)
+*  DESCRIPTION: class VTime
+/ (originally named Time in v1)
 *
 *  AUTHOR: Amir Barylko & Jorge Beyoglonian 
 *
@@ -244,7 +245,7 @@ VTime &VTime::makeFrom( const string &str )
 VTime &VTime::makeFrom( double secs )
 {
 	seconds( static_cast< int >( secs ) ) ;
-	secs -= seconds() ;
+	secs -= hours() * 3600 + minutes() * 60 + seconds();
 	double milsec = secs * 1000;
 	mseconds( static_cast< int >( milsec ) ) ;
 	milsec -= mseconds();

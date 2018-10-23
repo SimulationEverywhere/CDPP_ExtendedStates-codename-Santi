@@ -29,7 +29,7 @@ VTime minposroot_1(double *coeff)
 	else
 		mpr = VTime(-coeff[0]/coeff[1]);
 
-	if(mpr < 0 || mpr >= VTime::Inf)
+	if(mpr < VTime::Zero || mpr >= VTime::Inf)
 		mpr = VTime::Inf;
 
 	return mpr;
