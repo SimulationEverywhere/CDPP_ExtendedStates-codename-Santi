@@ -80,7 +80,7 @@ details.
 
 ## Authors
 
-* SED group at [Computer Science Department, FCEyN - UBA](https://www.dc.uba.ar/).
+* [Discrete Event Simulation Lab](https://modsimu.exp.dc.uba.ar/sed/).
 
 ## License
 
