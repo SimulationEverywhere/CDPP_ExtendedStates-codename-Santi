@@ -1,6 +1,6 @@
 # Changelog
 
-This documents changes to the CD++ kernel as it was released under codename Lopez.
+This documents changes to the CD++ kernel as it was released under codename [Lopez](https://github.com/SimulationEverywhere/CDPP_AdvancedRules-codename-Lopez).
 
 ## 2.1.1 - August 2018
 
