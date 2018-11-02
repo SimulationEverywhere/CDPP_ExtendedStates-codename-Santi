@@ -80,7 +80,7 @@ details.
 
 ## Authors
 
-* Updated since 2017 by [Discrete Event Simulation Lab](https://modsimu.exp.dc.uba.ar/sed/), Facultad de Ciencias Exactas y Naturales, Universidad de Buenos Aires.
+Updated since 2017 by [Discrete Event Simulation Lab](https://modsimu.exp.dc.uba.ar/sed/), Facultad de Ciencias Exactas y Naturales, Universidad de Buenos Aires (see [changelog](CHANGELOG.md)).
 
 ## License
 
