@@ -17,7 +17,14 @@
 /** include files **/
 #include <vector>
 #include <map>
-#include <hash_map>		//Template hash_map
+
+// If OS is Apple based, hashmap is defined differently
+#if defined __GNUC__ || defined __APPLE__
+       #include <ext/hash_map>
+#else
+       #include <hash_map>
+#endif
+
 #include <string>           // Template std::string
 #include "strutil.h"		// hash<std::string>
 #include "modelid.h"
