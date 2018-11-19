@@ -15,6 +15,9 @@
 
 #include <string>
 #include <iterator>
+#if defined __GNUC__ || defined __APPLE__
+    #include <iostream>
+#endif
 
 class TokenIterator
 {
