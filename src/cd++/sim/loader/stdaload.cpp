@@ -28,6 +28,7 @@
 #include "realprec.h"
 #include "impresion.h"
 #include "log.h"
+#include <string.h>
 
 #ifdef MPI
 #include "mpi.h"			//MPI_Routines
@@ -43,6 +44,14 @@ extern "C"
 using namespace std;
 
 #define	CTE_STR_W	"The format for the -w parameter is: -wXX-YY where XX and YY are integer numbers."
+
+#define CHECK_ARG(opt, arg) {\
+	if(arg == nullptr)\
+	{\
+		cout << "Option -" << opt << " requires argument!" << endl;\
+		exit(1);\
+	}\
+}
 
 int getWidth( const char *str )
 {
@@ -150,44 +159,69 @@ void StandAloneLoader::readCommandLine() {
 
 	while( --argc )
 	{
-		if( argv[ argc ][ 0 ] == '-' )
+		if( argv[ argc ][ 0 ] == '-' || argv[ argc-1 ][ 0 ] == '-' )
 		{
-			switch( argv[ argc ][ 1 ] )
+			ssize_t arg_offset, opt_idx, arg_idx;
+			char *arg = nullptr;
+
+			// 1. Current string contains option without argument.
+			if(argv[ argc ][ 0 ] == '-' && strlen(argv[ argc ]) == 2)
+				opt_idx = argc, arg_idx = -1;
+			// 2. Current string contains option with argument.
+			else if(argv[ argc ][ 0 ] == '-' && strlen(argv[ argc ]) > 2)
+				opt_idx = argc, arg_idx = argc, arg_offset = 2;
+			// 3. Current string is argument of the option in next string.
+			else if(argv[argc-1][0] == '-' && strlen(argv[ argc-1 ]) == 2)
+				opt_idx = argc-1, arg_idx = argc, arg_offset = 0, argc--;
+			else
+			{
+				cout << "Invalid parameter " << argv[ argc ] << "!" << endl ;
+				exit(1);
+			}
+
+			if(arg_idx >= 0)
+				arg = argv[ arg_idx ] + arg_offset;
+
+			switch( argv[ opt_idx ][ 1 ] )
 			{
 				case 'm': // file de modelos a cargar
-					iniName = argv[ argc ] + 2 ;
+					iniName = arg ;
 					break;
 
 				case 't': // hora de finalizacion de la simulacion
-					stopTime( VTime( argv[ argc ] + 2 ) ) ;
+					CHECK_ARG('t', arg);
+					stopTime( VTime( arg ) ) ;
 					break;
 
 				case 'l': // log name
-
+					CHECK_ARG('l', arg);
 					Log::Default.createLog( true );
-					Log::Default.filename( argv[ argc ] + 2 );
+					Log::Default.filename( arg );
 					break;
 
 				case 'L': //log modifiers
-
-
-					Log::Default.logType( argv[argc] + 2);
+					CHECK_ARG('L', arg);
+					Log::Default.logType( arg );
 					break;
 
 				case 'e': // event file
-					evName = argv[ argc ] + 2 ;
+					CHECK_ARG('e', arg);
+					evName = arg;
 					break;
 
 				case 'o': // output stream
-					output = argv[ argc ] + 2 ;
+					CHECK_ARG('o', arg);
+					output = arg;
 					break;
 
 				case 'v': // evaluate debug mode
-					evalDebugName = argv[ argc ] + 2 ;
+					CHECK_ARG('v', arg);
+					evalDebugName = arg;
 					break;
 
 				case 'f': // evaluate debug mode
-					flatDebugName = argv[ argc ] + 2 ;
+					CHECK_ARG('f', arg);
+					flatDebugName = arg;
 					break;
 
 				case 'h': // help
@@ -217,17 +251,20 @@ void StandAloneLoader::readCommandLine() {
 					break;
 
 				case 'p': // Print extra parsing info
+					CHECK_ARG('p', arg);
 					printParserInfo(true);
-					parserFileName = argv[ argc ] + 2;
+					parserFileName = arg;
 					ParserDebug().Active( true );
 					break;
 
 				case 'P': //Run parallel simulation using filename with partition
-					partitionFileName = argv[ argc ] + 2 ;
+					CHECK_ARG('P', arg);
+					partitionFileName = arg ;
 					break;
 
 				case 'D': //Partition debug file name
-					partitionDebug = argv[ argc ] + 2;
+					CHECK_ARG('D', arg);
+					partitionDebug = arg;
 					break;
 
 				case 'r': // Debug Cells rules
@@ -243,33 +280,38 @@ void StandAloneLoader::readCommandLine() {
 					break;
 
 				case 'd': // Set the value of TOL
-					RealPrecision::Tol.precision( atof( argv[argc] + 2 ) );
+					CHECK_ARG('d', arg);
+					RealPrecision::Tol.precision( atof( arg ) );
 					break;
 
 				case 'w': // set the width & precision to show real numbers
-					Impresion::Default.Width( getWidth( argv[ argc ] + 2 ));
-					Impresion::Default.Precision( getPrecision( argv[ argc ] + 2 ));
+					CHECK_ARG('w', arg);
+					Impresion::Default.Width( getWidth( arg ));
+					Impresion::Default.Precision( getPrecision( arg ));
 					break;
 
 				case 'y': // If we use dynamic quantum, an initial value is defined
-					UseDynQuantum().Ratio( atof( argv[argc] + 2 ) );
+					CHECK_ARG('y', arg);
+					UseDynQuantum().Ratio( atof( arg ) );
 					UseDynQuantum().Active( true );
 					UseDynQuantum().Strat( true );
 					break;
 
 				case 'Y': // If we use dynamic quantum, an initial value is defined
-					UseDynQuantum().Ratio( atof( argv[argc] + 2 ) );
+					CHECK_ARG('Y', arg);
+					UseDynQuantum().Ratio( atof( arg ) );
 					UseDynQuantum().Active( true );
 					UseDynQuantum().Strat( false );
 					break;
 
 				case 'q': // Set the value of the Quantum
-					UseQuantum().Value( atof( argv[argc] + 2 ) );
+					CHECK_ARG('q', arg);
+					UseQuantum().Value( atof( arg ) );
 					UseQuantum().Active( true );
 					break;
 
 				default:
-					cout << "Invalid parameter " << argv[ argc ] << "!" << endl ;
+					cout << "Invalid parameter " << argv[ opt_idx ] << "!" << endl ;
 					exit(0);
 			}
 		} else
