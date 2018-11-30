@@ -19,7 +19,12 @@
 
 #include <ctype.h>   // tolower 
 #include <cstdio>
-#include <hash_map>
+// If OS is Apple based, hashmap is defined differently
+#if defined __GNUC__ || defined __APPLE__
+       #include <ext/hash_map>
+#else
+       #include <hash_map>
+#endif
 #include "real.h"
 
 std::string lowerCase( const std::string &str );

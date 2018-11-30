@@ -34,7 +34,7 @@ struct Event
 
 	Event( const VTime = VTime::Zero, const Port * = NULL, const AbstractValue & = Real(0) );
 
-	bool operator < ( const Event &ev )
+	bool operator < ( const Event &ev ) const
 		{return time < ev.time;}
 		
 	Event &operator =( const Event &ev ) ;
