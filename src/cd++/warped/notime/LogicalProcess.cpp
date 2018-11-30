@@ -85,7 +85,7 @@ LogicalProcess::~LogicalProcess() {
 #ifdef INTERACTIVE
   console.setCommManager(NULL);
 #endif
-  cout << "LP " << id << " has finished simualtion \n";
+  cout << "LP " << id << " has finished simulation \n";
   delete [] simArray;
 }
 
