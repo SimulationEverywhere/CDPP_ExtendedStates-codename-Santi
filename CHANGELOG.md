@@ -2,6 +2,17 @@
 
 This documents changes to the CD++ kernel as it was released under codename [Lopez](https://github.com/SimulationEverywhere/CDPP_AdvancedRules-codename-Lopez).
 
+## 2.1.2 - December 2018
+
+### Added
+
+* Support for `macOS`.
+* Debugging enhancements for the `pulse` introductory example.
+
+### Changed
+
+* Improvements in command-line argument parsing (options and their arguments can be separated by an arbitrary number of spaces).
+
 ## 2.1.1 - August 2018
 
 ### Added
