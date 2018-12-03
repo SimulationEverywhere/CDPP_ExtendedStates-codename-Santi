@@ -11,6 +11,19 @@
 using namespace std;
 
 
+#define VERBOSE true
+
+#define PRINT_TIMES(f) {\
+	VTime timeleft = nextChange();\
+	VTime elapsed  = msg.time() - lastChange();\
+	VTime sigma    = elapsed + timeleft;\
+	cout << f << "@" << msg.time() <<\
+		" - timeleft: " << timeleft <<\
+		" - elapsed: " << elapsed <<\
+		" - sigma: " << sigma << endl;\
+}
+
+
 Pulse::Pulse(const string &name) :
 	Atomic(name),
 	start(addInputPort("start")),
@@ -33,6 +46,10 @@ Model &Pulse::initFunction()
 
 Model &Pulse::externalFunction(const ExternalMessage &msg)
 {
+#if VERBOSE
+	PRINT_TIMES("dext");
+#endif
+
 	if(msg.port() == start)
 	{
 		this->on = true;
@@ -48,8 +65,12 @@ Model &Pulse::externalFunction(const ExternalMessage &msg)
 }
 
 
-Model &Pulse::internalFunction(const InternalMessage &)
+Model &Pulse::internalFunction(const InternalMessage &msg)
 {
+#if VERBOSE
+	PRINT_TIMES("dint");
+#endif
+
 	if(this->on)
 		holdIn(AtomicState::active, this->frequency_time);
 	else
