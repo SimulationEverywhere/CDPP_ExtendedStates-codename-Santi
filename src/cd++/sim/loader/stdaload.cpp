@@ -347,17 +347,24 @@ SimLoader &StandAloneLoader::loadData()
 
 	ostream& out = *temp;
 
-	out << "CD++ Extended States: An extended and improved version of CD++ for Cell-DEVS\n";
-	out << "----------------------------------------------------------------------------\n";
-	out << "Version 2.1.2 - December 2018 -";
-#ifdef MPI
-	out << " Compiled for parallel simulation\n" << endl;
-#else
-	out << " Compiled for standalone simulation\n" << endl;
-#endif
+	out << "PCD++: A Tool to Implement n-Dimensional Cell-DEVS models\n";
+	out << "Version 3.0 - March 2003\n";
+	out << "Troccoli A., Rodriguez D., Wainer G., Barylko A., Beyoglonian J., Lopez A.\n";
+	out << "-----------------------------------------------------------------------------\n";
+	out << "PCD++ Extended States: An extended and improved version of CD++ for Cell-DEVS\n";
+	out << "Version 4.1.2 - December 2018\n";
+	out << "Santi L., Castro, R., Pimás, J.\n";
+	out << "-----------------------------------------------------------------------------\n";
 	out << "Discrete Event Simulation Lab\n";
+	out << "Departamento de Computación\n";
 	out << "Facultad de Ciencias Exactas y Naturales\n";
 	out << "Universidad de Buenos Aires, Argentina\n";
+	out << "-----------------------------------------------------------------------------\n";
+#ifdef MPI
+	out << "Compiled for parallel simulation\n" << endl;
+#else
+	out << "Compiled for standalone simulation\n" << endl;
+#endif
 	out << "\n";
 
 	out << "Loading models from " << iniName << endl ;

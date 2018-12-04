@@ -2,7 +2,7 @@
 
 This documents changes to the CD++ kernel as it was released under codename [Lopez](https://github.com/SimulationEverywhere/CDPP_AdvancedRules-codename-Lopez).
 
-## 2.1.2 - December 2018
+## 4.1.2 - December 2018
 
 ### Added
 
@@ -13,14 +13,14 @@ This documents changes to the CD++ kernel as it was released under codename [Lop
 
 * Improvements in command-line argument parsing (options and their arguments can be separated by an arbitrary number of spaces).
 
-## 2.1.1 - August 2018
+## 4.1.1 - August 2018
 
 ### Added
 
 * New built-in atomic models:
   - Transducer, CPU and queue.
 
-## 2.1.0 - January 2018
+## 4.1.0 - January 2018
 
 ### Added
 
@@ -35,14 +35,14 @@ This documents changes to the CD++ kernel as it was released under codename [Lop
   the VTime class that provide a more granular definition of time objects
   (i.e., with a less than 1 ms resolution).
 
-## 2.0.1 - November 2017
+## 4.0.1 - November 2017
 
 ### Fixed
 
 * Inertial delay was not working as expected. This bug was not introduced by 
   the updates of version 2.0.0 described below. 
 
-## 2.0.0 - March 2017
+## 4.0.0 - March 2017
 
 ### Added
 
