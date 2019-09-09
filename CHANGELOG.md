@@ -2,6 +2,17 @@
 
 This documents changes to the CD++ kernel as it was released under codename [Lopez](https://github.com/SimulationEverywhere/CDPP_AdvancedRules-codename-Lopez).
 
+## 4.1.3 - September 2019
+
+### Added
+
+* Instructions for compiling and setting up the introductory [pulse example](examples/pulse).
+* Basic Python notebook to post-process `pulse` simulation output and instructions to run it.
+
+### Changed
+
+* Minor improvements in input filename handling in the [tuple_to_real script](scripts/tuple_to_real.py).
+
 ## 4.1.2 - December 2018
 
 ### Added
