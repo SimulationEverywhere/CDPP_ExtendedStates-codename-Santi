@@ -40,3 +40,18 @@ $ head output
 00:00:09:000:0 out_port [86, 0, 1]
 00:00:10:000:0 out_port [6, 0, 1]
 ```
+
+### Data analysis via Python notebooks
+
+The following instructions can be used as a guideline to process and analyze simulation data through Python notebooks:
+
+1. Install [Jupyter Notebook](https://jupyter.org/)
+   * You can follow [these steps](https://jupyter.org/install) 
+2. Run the `pulse` example as instructed above:
+   * `$ bin/cd++ -m../model/pulse.ma -e../model/pulse.ev -ooutput`
+   * Make sure your working directory is `src` before doing this
+3. Run Jupyter:
+   * `$ cd ..`
+   * `$ jupyter notebook`
+4. Once the web browser opens, go to the `notebook` directory and double-click on `Pulse.ipynb`
+5. Click on `Cell -> Run All` in order to run the notebook code and produce a sample graph using the output data
