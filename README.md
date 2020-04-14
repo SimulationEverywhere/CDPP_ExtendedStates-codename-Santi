@@ -16,6 +16,7 @@ The easiest way to get the source code is by cloning the git repository:
 
  * `GCC 4.7` or higher (with C++11 support)
  * `bison`
+ * `bison++`
  * `GNU make`
 
 ### Compilation
