@@ -45,7 +45,7 @@ AbstractValue &StateVars::set(const string &name, AbstractValue &newValue)
         MTHROW(e);
     }
 
-    value_ptr ptr(&newValue);
+    auto ptr = AbstractValue::to_value_ptr(newValue);
     this->map<const string, value_ptr>::operator[](name) = ptr;
     return *(this->map<const string, value_ptr>::operator[](name));
 }
