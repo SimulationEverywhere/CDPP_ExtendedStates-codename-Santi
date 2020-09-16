@@ -243,11 +243,8 @@ ParallelProcessor::initialize() {
 		logIndex = 0;
 
 		if ( !Log::Default.logToStdOut() ) {
-			//sixuan: bug in 32bit system, cannot open stream more than 1000, here control to MAX 800
-			if (id()<=100){
 				outFileQ = new ostream*[1];
 				outFileQ[0] = new fstream( string(Log::Default.filename() + id()).c_str(), ios::out );
-			}
 		}
 		else
 		{
