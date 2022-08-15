@@ -63,6 +63,6 @@ DEFINES_CPP   += -DUSE_USER_VTIME -DHAS_BOOLEAN
 #TESTING
 #DEFINES_CPP += -DDEVS_DELAY_INTERNAL
 #DEFINES_CPP += -DDEVS_DELAY_EXTERNAL
-DEFINES_CPP += -DDEVS_NOTRANDOM
+#DEFINES_CPP += -DDEVS_NOTRANDOM
 #DEFINES_CPP += -DDEVS_LOGSENT
 #############################################################################################################
