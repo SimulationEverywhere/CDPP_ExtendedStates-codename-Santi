@@ -1,2 +1,2 @@
-* Replace "Model Template" by the name of the atomic model in all the files in this folder (including the filenemes).
-* Uncomment the desired lines to execute its code.
+* Replace "ModelTemplate" systematically in all the files in this folder (including filenemes) with your desired model name for the atomic model.
+* Optionally, at your conveninence, uncomment lines of code suggested as hints for typical tasks within functions.
