@@ -24,7 +24,7 @@ In order to compile the simulator kernel, go to the directory where its source
 code is located and run make. For example,
 
 ```
- $ cd cdpp/src
+ $ cd CDPP_ExtendedStates-codename-Santi/src
  $ make
 ```
  
